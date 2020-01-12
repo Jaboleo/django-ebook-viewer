@@ -36,11 +36,14 @@ class Books(models.Model):
     class Meta:
         managed = False
         db_table = 'books'
+    
+    def __str__(self):
+        return self.title
 
 
 class BooksAuthorsLink(models.Model):
-    book = models.IntegerField()
-    author = models.IntegerField()
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, db_column='book')
+    author = models.ForeignKey(Authors, on_delete=models.CASCADE, db_column='author')
 
     class Meta:
         managed = False
