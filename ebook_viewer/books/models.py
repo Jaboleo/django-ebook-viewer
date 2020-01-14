@@ -49,6 +49,13 @@ class BooksAuthorsLink(models.Model):
         managed = False
         db_table = 'books_authors_link'
 
+class Series(models.Model):
+    name = models.TextField()
+    sort = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'series'
 
 class BooksCustomColumn1Link(models.Model):
     book = models.IntegerField()
@@ -98,8 +105,8 @@ class BooksRatingsLink(models.Model):
 
 
 class BooksSeriesLink(models.Model):
-    book = models.IntegerField()
-    series = models.IntegerField()
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, db_column='book')
+    series = models.ForeignKey(Series, on_delete=models.CASCADE, db_column='series')
 
     class Meta:
         managed = False
@@ -260,13 +267,6 @@ class Ratings(models.Model):
         db_table = 'ratings'
 
 
-class Series(models.Model):
-    name = models.TextField()
-    sort = models.TextField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'series'
 
 
 class Tags(models.Model):

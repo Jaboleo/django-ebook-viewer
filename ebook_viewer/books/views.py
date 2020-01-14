@@ -5,10 +5,10 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response 
 from rest_framework.reverse import reverse 
 
-from .models import Books, BooksAuthorsLink
-from .serializers import BooksSerializer, BooksAuthorsLinkSerializer
+from .models import Books, BooksAuthorsLink, Authors
+from .serializers import BooksSerializer, BooksAuthorsLinkSerializer, AuthorsSerializer
 
 # Create your views here.
 class BooksList(generics.ListCreateAPIView):
-    queryset = BooksAuthorsLink.objects.all()
-    serializer_class = BooksAuthorsLinkSerializer
+    queryset = Books.objects.all()
+    serializer_class = BooksSerializer
