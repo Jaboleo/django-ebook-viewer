@@ -34,6 +34,9 @@ class Books(models.Model):
     uuid = models.TextField(blank=True, null=True)
     has_cover = models.BooleanField(blank=True, null=True)
     last_modified = models.TextField()  # This field type is a guess.
+    authors = models.ManyToManyField(Authors, through='BooksAuthorsLink')
+    series = models.ManyToManyField("Series", through='BooksSeriesLink')
+    rating = models.ManyToManyField("Ratings", through='BooksRatingsLink')
 
     class Meta:
         managed = False
@@ -98,8 +101,8 @@ class BooksPublishersLink(models.Model):
 
 
 class BooksRatingsLink(models.Model):
-    book = models.IntegerField()
-    rating = models.IntegerField()
+    book = models.ForeignKey('Books', on_delete=models.CASCADE, db_column='book')
+    rating = models.ForeignKey('Ratings', on_delete=models.CASCADE, db_column='rating')
 
     class Meta:
         managed = False

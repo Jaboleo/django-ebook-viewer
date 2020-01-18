@@ -1,24 +1,38 @@
 from rest_framework import serializers
-from .models import Books, BooksAuthorsLink, BooksSeriesLink
+from .models import Books, Authors, Series, CustomColumn1, Tags, Ratings
 
-class BooksAuthorsLinkSerializer(serializers.ModelSerializer):
+class AuthorsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BooksAuthorsLink
-        fields =  ['author',]
-        depth=1
+        model = Authors
+        fields = ('name',)
 
-class BooksSeriesLinkSerializer(serializers.ModelSerializer):
+class SeriesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = BooksSeriesLink
-        fields = ('series',)
-        depth = 1
+        model = Series
+        fields = ('name',)
+
+class RatingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ratings
+        fields = ('rating',)
+
+class TagsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tags
+        fields = ('name')
+
+class CustomColumn1Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomColumn1
+        fields = ('value',)
 
 class BooksSerializer(serializers.ModelSerializer):
-    authors = BooksAuthorsLinkSerializer(source='booksauthorslink_set', many=True)
-    series = BooksSeriesLinkSerializer(source='booksserieslink_set', many=True)
+    authors = AuthorsSerializer(many=True, read_only=True)
+    series = SeriesSerializer(read_only=True)
+    rating = RatingsSerializer(read_only=True)
     class Meta:
         model = Books
-        fields = ( 'title','authors','series')
+        fields = ( 'title','pubdate','authors','rating', 'series', 'series_index')
 
         
 
