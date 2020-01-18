@@ -16,7 +16,9 @@ class Authors(models.Model):
     class Meta:
         managed = False
         db_table = 'authors'
-
+    
+    def __str__(self):
+        return self.name
 
 class Books(models.Model):
     title = models.TextField()

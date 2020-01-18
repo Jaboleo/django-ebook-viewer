@@ -1,23 +1,24 @@
 from rest_framework import serializers
-from .models import Books, Authors, BooksAuthorsLink
-
-class AuthorsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Authors
-        fields = ["name"]
+from .models import Books, BooksAuthorsLink, BooksSeriesLink
 
 class BooksAuthorsLinkSerializer(serializers.ModelSerializer):
-    names = serializers.RelatedField(source="author", read_only=True)
     class Meta:
         model = BooksAuthorsLink
-        fields = ("names",)
+        fields =  ['author',]
+        depth=1
+
+class BooksSeriesLinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BooksSeriesLink
+        fields = ('series',)
+        depth = 1
 
 class BooksSerializer(serializers.ModelSerializer):
-    authors = BooksAuthorsLinkSerializer(source ="booksauthorslink_set")
-    # books_series = BooksSeriesLinkSerializer(source = "BooksSeriesLink_set")
+    authors = BooksAuthorsLinkSerializer(source='booksauthorslink_set', many=True)
+    series = BooksSeriesLinkSerializer(source='booksserieslink_set', many=True)
     class Meta:
         model = Books
-        fields = ( 'title','authors',)
+        fields = ( 'title','authors','series')
 
         
 
