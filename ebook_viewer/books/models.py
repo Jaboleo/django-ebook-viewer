@@ -37,6 +37,7 @@ class Books(models.Model):
     authors = models.ManyToManyField(Authors, through='BooksAuthorsLink')
     series = models.ManyToManyField("Series", through='BooksSeriesLink')
     rating = models.ManyToManyField("Ratings", through='BooksRatingsLink')
+    genre = models.ManyToManyField("CustomColumn1", through='BooksCustomColumn1Link')
 
     class Meta:
         managed = False
@@ -63,8 +64,8 @@ class Series(models.Model):
         db_table = 'series'
 
 class BooksCustomColumn1Link(models.Model):
-    book = models.IntegerField()
-    value = models.IntegerField()
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, db_column='book')
+    value = models.ForeignKey("CustomColumn1", on_delete=models.CASCADE, db_column='value')
 
     class Meta:
         managed = False
