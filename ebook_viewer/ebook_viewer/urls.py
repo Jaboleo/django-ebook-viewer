@@ -20,3 +20,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('books.urls'))
 ]
+
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]

@@ -34,9 +34,11 @@ class Books(models.Model):
     uuid = models.TextField(blank=True, null=True)
     has_cover = models.BooleanField(blank=True, null=True)
     last_modified = models.TextField()  # This field type is a guess.
-    authors = models.ManyToManyField(Authors, through='BooksAuthorsLink')
+    authors = models.ManyToManyField("Authors", through='BooksAuthorsLink')
     series = models.ManyToManyField("Series", through='BooksSeriesLink')
     rating = models.ManyToManyField("Ratings", through='BooksRatingsLink')
+    tags = models.ManyToManyField("Tags", through='BooksTagsLink')
+    # genre = models.ManyToManyField("CustomColumn1", through="BooksCustomColumn1Link")
 
     class Meta:
         managed = False
@@ -63,8 +65,8 @@ class Series(models.Model):
         db_table = 'series'
 
 class BooksCustomColumn1Link(models.Model):
-    book = models.IntegerField()
-    value = models.IntegerField()
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, db_column='book')
+    value = models.ForeignKey("CustomColumn1", on_delete=models.CASCADE, db_column='value')
 
     class Meta:
         managed = False
@@ -119,8 +121,8 @@ class BooksSeriesLink(models.Model):
 
 
 class BooksTagsLink(models.Model):
-    book = models.IntegerField()
-    tag = models.IntegerField()
+    book = models.ForeignKey(Books, on_delete=models.CASCADE, db_column='book')
+    tag = models.ForeignKey("Tags", on_delete=models.CASCADE, db_column='tag')
 
     class Meta:
         managed = False

@@ -9,7 +9,11 @@ from .models import Books, BooksAuthorsLink, Authors
 from .serializers import BooksSerializer, AuthorsSerializer
 
 class BooksList(generics.ListCreateAPIView):
-    queryset = Books.objects.all()
+    # queryset = Books.objects.all()
+    # queryset = Books.objects.all().prefetch_related('authors','series','rating','tags')[:999]
+    queryset = []
+    for i in (0,4):
+        queryset += Books.objects.all().prefetch_related('authors','series','rating','tags')[i*999:(i+1)*999]
     serializer_class = BooksSerializer
 
 
