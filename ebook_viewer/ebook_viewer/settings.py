@@ -39,11 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'books.apps.BooksConfig',
-<<<<<<< HEAD
-    'debug_toolbar'
-=======
     'silk',
->>>>>>> ORM-playground
 ]
 
 MIDDLEWARE = [
@@ -54,11 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-<<<<<<< HEAD
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-=======
     'silk.middleware.SilkyMiddleware',
->>>>>>> ORM-playground
 ]
 
 ROOT_URLCONF = 'ebook_viewer.urls'
