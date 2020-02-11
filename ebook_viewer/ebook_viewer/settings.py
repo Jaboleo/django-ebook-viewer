@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'books.apps.BooksConfig',
+<<<<<<< HEAD
     'debug_toolbar'
+=======
+    'silk',
+>>>>>>> ORM-playground
 ]
 
 MIDDLEWARE = [
@@ -50,7 +54,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+<<<<<<< HEAD
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+=======
+    'silk.middleware.SilkyMiddleware',
+>>>>>>> ORM-playground
 ]
 
 ROOT_URLCONF = 'ebook_viewer.urls'
@@ -122,6 +130,25 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+=======
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'loggers': {
+#         'django.db.backends': {
+#             'level': 'DEBUG',
+#             'handlers': ['console'],
+#         }
+#     },
+# }
+>>>>>>> ORM-playground
