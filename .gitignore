@@ -128,3 +128,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+.metadata.db
+./ebook_viewer/metadata.db
