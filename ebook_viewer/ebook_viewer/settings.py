@@ -122,11 +122,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-<<<<<<< HEAD
-INTERNAL_IPS = [
-    '127.0.0.1',
-]
-=======
 
 # LOGGING = {
 #     'version': 1,
@@ -143,4 +138,8 @@ INTERNAL_IPS = [
 #         }
 #     },
 # }
->>>>>>> ORM-playground
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
+}

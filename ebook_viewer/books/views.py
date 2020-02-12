@@ -8,9 +8,9 @@ from rest_framework.reverse import reverse
 from .models import Books, BooksAuthorsLink, Authors
 from .serializers import BooksSerializer, AuthorsSerializer
 
-class BooksList(generics.ListCreateAPIView):
-    # queryset = Books.objects.all()[:999]
-    # queryset = Books.objects.all().prefetch_related('authors','series','rating','tags')[:999]
+class BooksList(generics.ListAPIView):
+    # queryset = Books.objects.all()
+    # queryset = Books.objects.all().prefetch_related('authors','series','rating','tags')
 
     queryset = []
     i = 0
