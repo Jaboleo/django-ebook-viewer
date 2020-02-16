@@ -23,4 +23,4 @@ urlpatterns = [
     path('', include('books.urls')),
 ]
 
-urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
+# urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]

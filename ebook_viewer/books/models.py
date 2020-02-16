@@ -38,7 +38,7 @@ class Books(models.Model):
     series = models.ManyToManyField("Series", through='BooksSeriesLink')
     rating = models.ManyToManyField("Ratings", through='BooksRatingsLink')
     tags = models.ManyToManyField("Tags", through='BooksTagsLink')
-    # genre = models.ManyToManyField("CustomColumn1", through="BooksCustomColumn1Link")
+    genre = models.ManyToManyField("CustomColumn1", through="BooksCustomColumn1Link")
 
     class Meta:
         managed = False
@@ -272,9 +272,6 @@ class Ratings(models.Model):
     class Meta:
         managed = False
         db_table = 'ratings'
-
-
-
 
 class Tags(models.Model):
     name = models.TextField()

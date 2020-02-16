@@ -20,7 +20,7 @@ class BooksList(generics.ListAPIView):
         if len(instance) < 999:
             break
         i += 1
-    print(len(queryset))
+    print(f"Number of books in the database: {len(queryset)}")
     serializer_class = BooksSerializer
 
 

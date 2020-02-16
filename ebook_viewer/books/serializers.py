@@ -31,10 +31,10 @@ class BooksSerializer(serializers.ModelSerializer):
     series = SeriesSerializer(read_only=True)
     rating = RatingsSerializer(read_only=True)
     tags = TagsSerializer(read_only=True)
-    # genre = CustomColumn1Serializer(read_only=True)
+    genre = CustomColumn1Serializer(read_only=True, many=True)
     class Meta:
         model = Books
-        fields = ( 'title','pubdate','authors','rating', 'series', 'series_index', 'tags')
+        fields = ( 'title','pubdate','authors','rating', 'series', 'series_index', 'tags', 'genre')
         # fields = "__all__"
 
 # class BooksSerializer(serializers.ModelSerializer):
