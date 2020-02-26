@@ -130,7 +130,7 @@ class BooksTagsLink(models.Model):
 
 
 class Comments(models.Model):
-    book = models.IntegerField()
+    book = models.OneToOneField(Books,on_delete=models.CASCADE, db_column='book')
     text = models.TextField()
 
     class Meta:
