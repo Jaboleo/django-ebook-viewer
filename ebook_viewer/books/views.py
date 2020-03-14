@@ -5,25 +5,31 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response 
 from rest_framework.reverse import reverse 
 from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import Books, BooksAuthorsLink, Authors
 from .serializers import BooksSerializer, AuthorsSerializer, BookDetailsSerializer
+from .filters import BookFilter
+
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 50
 
 class BooksList(generics.ListAPIView):
-    queryset = []
+    queryset = Books.objects.none()
     i = 0
     while True:
         instance = Books.objects.all().prefetch_related('authors','series','rating','tags')[i*999:(i+1)*999]
-        queryset += instance
+        queryset |= instance
         if len(instance) < 999:
             break
         i += 1
     print(f"Number of books in the database: {len(queryset)}")
     serializer_class = BooksSerializer
     pagination_class = StandardResultsSetPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = BookFilter
+
 
 class BooksDetails(generics.ListAPIView):
 
@@ -33,5 +39,3 @@ class BooksDetails(generics.ListAPIView):
         return queryset
 
     serializer_class = BookDetailsSerializer
-
-
