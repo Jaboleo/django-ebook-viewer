@@ -28,19 +28,19 @@ class CustomColumn1Serializer(serializers.ModelSerializer):
 
 class BooksSerializer(serializers.ModelSerializer):
     authors = AuthorsSerializer(many=True, read_only=True)
-    series = SeriesSerializer(read_only=True)
-    rating = RatingsSerializer(read_only=True)
+    series = SeriesSerializer(read_only=True, many=True)
+    rating = RatingsSerializer(read_only=True, many=True)
     tags = TagsSerializer(read_only=True, many=True)
     genre = CustomColumn1Serializer(read_only=True, many=True)
     class Meta:
         model = Books
-        fields = ( 'title','pubdate','authors','rating', 'series', 'series_index', 'tags', 'genre')
+        fields = ( 'id','title','pubdate','authors','rating', 'series', 'series_index', 'tags', 'genre')
         # fields = "__all__"
 
 class BookDetailsSerializer(serializers.ModelSerializer):
     authors = AuthorsSerializer(many=True, read_only=True)
-    series = SeriesSerializer(read_only=True)
-    rating = RatingsSerializer(read_only=True)
+    series = SeriesSerializer(read_only=True, many=True)
+    rating = RatingsSerializer(read_only=True, many=True)
     tags = TagsSerializer(read_only=True, many=True)
     genre = CustomColumn1Serializer(read_only=True, many=True)
     comments = serializers.PrimaryKeyRelatedField(source='comments.text',read_only=True)

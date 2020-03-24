@@ -4,6 +4,8 @@ certifi==2019.11.28
 chardet==3.0.4
 Django==3.0.3
 django-auto-prefetching==0.1.7
+django-cors-headers==3.2.1
+django-filter==2.2.0
 django-silk==4.0.0
 djangorestframework==3.11.0
 gprof2dot==2019.11.30
@@ -18,4 +20,3 @@ requests==2.22.0
 six==1.14.0
 sqlparse==0.3.0
 urllib3==1.25.8
-django-filter==2.2.0

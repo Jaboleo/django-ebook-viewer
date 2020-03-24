@@ -141,4 +141,4 @@ STATIC_URL = '/static/'
 # }
 
 CORS_ORIGIN_ALLOW_ALL = True
-
+PATH_TO_LIBRARY = "F:\Książki calibre\Książki PL"
